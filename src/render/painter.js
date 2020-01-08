@@ -389,6 +389,15 @@ class Painter {
             coordsDescendingSymbol[id] = sourceCache.getVisibleCoordinates(true).reverse();
         }
 
+        for (const id in sourceCaches) {
+            const sourceCache = sourceCaches[id];
+            const source = sourceCache.getSource();
+            if (source.type !== 'raster' && source.type !== 'raster-dem' && source.type !== 'video-tiled') continue;
+            const visibleTiles = [];
+            for (const coord of coordsAscending[id]) visibleTiles.push(sourceCache.getTile(coord));
+            updateTileMasks(visibleTiles, this.context);
+        }
+
         this.opaquePassCutoff = Infinity;
         for (let i = 0; i < layerIds.length; i++) {
             const layerId = layerIds[i];

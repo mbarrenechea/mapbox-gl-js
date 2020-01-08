@@ -351,16 +351,23 @@ export const getImage = function(requestParameters: RequestParameters, callback:
 
 export const getVideo = function(urls: Array<string>, callback: Callback<HTMLVideoElement>): Cancelable {
     const video: HTMLVideoElement = window.document.createElement('video');
+    video.setAttribute('preload', 'auto')
     video.muted = true;
     video.onloadstart = function() {
         callback(null, video);
     };
+
     for (let i = 0; i < urls.length; i++) {
         const s: HTMLSourceElement = window.document.createElement('source');
         if (!sameOrigin(urls[i])) {
             video.crossOrigin = 'Anonymous';
         }
         s.src = urls[i];
+
+        s.onerror = () => {
+            callback('Error during video load', video)
+        }
+
         video.appendChild(s);
     }
     return {cancel: () => {}};
