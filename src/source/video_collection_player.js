@@ -30,8 +30,8 @@ class VideoCollectionPlayer {
     constructor(onRender: Function, getVideos: Function, onVideoError: Function) {
         this.onTimeChanged = () => {}; // all videos are synced
         this.onBeforeVideoSync = () => {};
-        this.onAfterVideoSync = () => {}; 
-        this.currentTimeMargin = 0.01; // video seeking is a mess in web browsers
+        this.onAfterVideoSync = () => {};
+        this.currentTimeMargin = 0.05; // video seeking is a mess in web browsers
         this.playbackRate = 1;
         this.playing = false;
         this.duration = 0;
