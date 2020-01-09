@@ -63,6 +63,26 @@ Clone the repository
 git clone git@github.com:mapbox/mapbox-gl-js.git
 ```
 
+Make sure a stable npm version is used, if you want to use both - use nvm:
+
+```
+nvm install 10.16.0
+nvm use 10.16.0
+```
+
+Install [development tools for Windows](https://stackoverflow.com/questions/23243353/how-to-set-shell-for-npm-run-scripts-in-windows):
+
+```
+npm install --global --production windows-build-tools
+npm config set msvs_version 2017 –global
+npm config set python C:\Users\<username>\.windows-build-tools\python27\python.exe 
+```
+
+Make sure [Windows uses bash](https://stackoverflow.com/questions/23243353/how-to-set-shell-for-npm-run-scripts-in-windows) for npm commands:
+
+```
+npm config set script-shell "C:\\Program Files\\git\\bin\\bash.exe"
+```
 
 Install node module dependencies
 ```bash
@@ -73,6 +93,22 @@ yarn install
 Install headless-gl dependencies https://github.com/stackgl/headless-gl#windows
 ```
 copy node_modules/headless-gl/deps/windows/dll/x64/*.dll c:\windows\system32
+```
+
+## Pack custom development versions
+
+1. Run:
+
+```
+yarn pack
+```
+
+2. Copy created tar file to some hosted storage
+
+3. Install as:
+
+```
+npm install --save <tarball url>
 ```
 
 ## Serving the Debug Page

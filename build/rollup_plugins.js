@@ -21,7 +21,8 @@ export const plugins = (minified, production) => [
         sourceMap: true,
         functions: ['PerformanceUtils.*', 'Debug.*']
     }) : false,
-    glsl('./src/shaders/*.glsl', production),
+    // glsl('./src/shaders/*.glsl', production),
+    glsl(/\.glsl$/, production),
     buble({transforms: {dangerousForOf: true}, objectAssign: "Object.assign"}),
     minified ? terser() : false,
     production ? unassert() : false,

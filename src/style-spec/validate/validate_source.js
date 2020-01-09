@@ -28,6 +28,7 @@ export default function validateSource(options) {
     case 'vector':
     case 'raster':
     case 'raster-dem':
+    case 'video-tiled':
         errors = validateObject({
             key,
             value,
@@ -91,7 +92,7 @@ export default function validateSource(options) {
         return validateEnum({
             key: `${key}.type`,
             value: value.type,
-            valueSpec: {values: ['vector', 'raster', 'raster-dem', 'geojson', 'video', 'image']},
+            valueSpec: {values: ['vector', 'raster', 'raster-dem', 'video-tiled', 'geojson', 'video', 'image']},
             style,
             styleSpec
         });
